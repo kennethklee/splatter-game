@@ -32,10 +32,10 @@
     "cover": "~0.2.9",
     "mocha": "~1.17.1",
     "jshint": "~2.4.3",
+    "bower": "~1.2.8",
     "grunt-cli": "~0.1.13"
   },
   "dependencies": {
-    "bower": "~1.2.8",
     "express": "~3.4.8",
     "gameroom": "0.0.0"
   },

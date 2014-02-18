@@ -11,10 +11,13 @@ app.configure(['development', 'production'], function() {
     app.use(express.logger());
 });
 
+app.configure('development', function() {
+    app.use(express.static(path.join(__dirname, '..', 'app')));
+});
+
+
 app.configure(function() {
     app.enable('trust proxy');
-
-    app.set('port', process.env.PORT || 3000);
 
     app.use(express.static(path.join(__dirname, '..', 'public')));
     app.use(express.cookieParser());
