@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         yeoman: {
             // Configurable paths
             app: 'app',
-            dist: 'dist'
+            dist: 'public'
         },
 
         // Watches files for changes and runs tasks based on the changed files
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    livereload: '<%= connect.options.livereload %>'
+                    livereload: '<%= express.options.livereload %>'
                 },
                 files: [
                     '<%= yeoman.app %>/{,*/}*.html',
@@ -58,10 +58,11 @@ module.exports = function (grunt) {
         },
 
         // The actual grunt server settings
-        connect: {
+        express: {
             options: {
                 port: 9000,
                 livereload: 35729,
+                script: 'index.js',
                 // Change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
             },
@@ -128,7 +129,7 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
+                    urls: ['http://<%= express.test.options.hostname %>:<%= express.test.options.port %>/index.html']
                 }
             }
         },
@@ -309,14 +310,14 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+            return grunt.task.run(['build', 'express:dist:keepalive']);
         }
 
         grunt.task.run([
             'clean:server',
             'concurrent:server',
             'autoprefixer',
-            'connect:livereload',
+            'express:livereload',
             'watch'
         ]);
     });
@@ -336,7 +337,7 @@ module.exports = function (grunt) {
         }
 
         grunt.task.run([
-            'connect:test',
+            'express:test',
             'mocha'
         ]);
     });
