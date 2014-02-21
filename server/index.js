@@ -1,26 +1,26 @@
 var path = require('path'),
-    express = require('express'),
-    Server = require('http').Server;
     GameRoom = require('gameroom'),
+    express = require('express'),
     app = module.exports = express(),
-    server = new Server(app);
+    server = require('http').Server(app);
 
+app.server = server;
 app.gameroom = new GameRoom(server);
 
-app.configure(['development', 'production'], function() {
-    app.use(express.logger());
-});
-
 app.configure('development', function() {
+    app.use(express.logger());
     app.use(express.static(path.join(__dirname, '..', 'app')));
 });
 
+app.configure('production', function() {
+    app.use(express.logger());
+    app.use(express.static(path.join(__dirname, '..', 'public')));
+});
 
 app.configure(function() {
     app.enable('trust proxy');
 
-    app.use(express.static(path.join(__dirname, '..', 'public')));
-    app.use(express.cookieParser());
+    //app.use(express.cookieParser());
     app.use(express.bodyParser());
 
     app.use(app.router);

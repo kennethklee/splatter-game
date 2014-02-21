@@ -41,7 +41,9 @@
   },
   "scripts": {
     "postinstall": "./node_modules/.bin/bower install",
-    "start": "./node_modules/.bin/grunt serve",
+    "start": "node index",
+    "preprod": "./node_modules/.bin/grunt build",
+    "prod": "ENV=production node index",
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {

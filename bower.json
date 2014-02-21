@@ -4,7 +4,8 @@
   "dependencies": {
     "bootstrap": "~3.0.3",
     "jquery": "~1.10.2",
-    "backbone": "~1.1.1"
+    "backbone": "~1.1.1",
+    "socket.io-client": "~0.9.16"
   },
   "devDependencies": {}
 }
