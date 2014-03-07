@@ -1,1 +1,2 @@
-//var socket = io.connect('/');
+var socket = io();
+var gameroom = new GameRoom(socket);
